@@ -1,6 +1,6 @@
 {
-    "train_csv": "/content/ChestXray/config/train.csv",
-    "dev_csv": "/content/ChestXray/config/dev.csv",
+    "train_csv": "/kaggle/working/ChestXray/config/train.csv",
+    "dev_csv": "/kaggle/working/ChestXray/config/dev.csv",
     "backbone": "densenet121",
     "width": 512,
     "height": 512,

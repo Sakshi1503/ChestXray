@@ -45,7 +45,7 @@ class ImageDataset(Dataset):
                             flg_enhance = True
                 # labels = ([self.dict.get(n, n) for n in fields[5:]])
                 labels = list(map(int, labels))
-                image_path = "/content/drive/My Drive/" + image_path[21:]
+                image_path = "/kaggle/input/chexpert/" + image_path[21:]
                 self._image_paths.append(image_path)
                 assert os.path.exists(image_path), image_path
                 self._labels.append(labels)
