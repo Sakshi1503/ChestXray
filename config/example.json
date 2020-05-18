@@ -1,6 +1,6 @@
 {
-    "train_csv": "/Path/to/train.csv",
-    "dev_csv": "/Path/to/dev.csv",
+    "train_csv": "ChestXray/config/train.csv",
+    "dev_csv": "ChestXray/config/dev.csv",
     "backbone": "densenet121",
     "width": 512,
     "height": 512,
@@ -13,13 +13,13 @@
     "use_transforms_type": "Aug",
     "gaussian_blur": 3,
     "border_pad": "pixel_mean",
-    "num_classes": [1,1,1,1,1],
+    "num_classes": [1, 1, 1, 1, 1],
     "batch_weight": true,
-    "enhance_index": [2,6],
+    "enhance_index": [2, 6],
     "enhance_times": 1,
-    "pos_weight": [1,1,1,1,1],
-    "train_batch_size": 56,
-    "dev_batch_size": 56,
+    "pos_weight": [1, 1, 1, 1, 1],
+    "train_batch_size": 8,
+    "dev_batch_size": 8,
     "pretrained": true,
     "log_every": 10,
     "test_every": 100,
@@ -39,5 +39,5 @@
     "weight_decay": 0.0,
     "best_target": "auc",
     "save_top_k": 3,
-    "save_index": [0,1,2,3,4]
+    "save_index": [0, 1, 2, 3, 4]
 }
