@@ -97,10 +97,10 @@ class DenseNet(nn.Module):
                 num_features = num_features // 2
 
         # Final batch norm
-        self.features.add_module('norm5', get_norm(norm_type, num_features))
+        #self.features.add_module('norm5', get_norm(norm_type, num_features))
 
         # Linear layer
-        self.classifier = nn.Linear(num_features, num_classes)
+        #self.classifier = nn.Linear(num_features, num_classes)
         self.num_features = num_features
 
         # Official init from torch repo.
