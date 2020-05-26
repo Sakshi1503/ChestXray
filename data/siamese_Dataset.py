@@ -52,7 +52,7 @@ class SiameseNetworkDataset():
                 # labels = ([self.dict.get(n, n) for n in fields[5:]])
                 image_path = "/kaggle/input/chexpert/" + image_path[32:]
                 image_two.append(image_path)
-                #assert os.path.exists(image_path), image_path
+                # assert os.path.exists(image_path), image_path
                 labels_two.append(labels)
                 '''
                 if flg_enhance and self._mode == 'train':
