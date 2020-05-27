@@ -100,4 +100,4 @@ class SiameseNetworkDataset():
             return img0, img1 , labels
         
     def __len__(self):
-        return len(self._num_image)
+        return self._num_image
