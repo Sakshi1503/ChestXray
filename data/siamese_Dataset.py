@@ -85,17 +85,17 @@ class SiameseNetworkDataset():
         if self._mode == 'train':
             img0 = GetTransforms(img0, type=self.cfg.use_transforms_type)
             img1 = GetTransforms(img1, type=self.cfg.use_transforms_type)
-        img0 = np.array(img0).astype(np.float32)
-        img1 = np.array(img1).astype(np.float32)    
+        img0 = np.array(img0)
+        img1 = np.array(img1)    
         
         img0 = transform(img0, self.cfg)
         img1 = transform(img1, self.cfg)
         
         labels = np.array(self._labels[index]).astype(np.float32) 
 
-        img0 = torch.from_numpy(img0)
-        img1 = torch.from_numpy(img1)
-        labels = torch.from_numpy(labels)
+        img0 = torch.from_numpy(img0).float()
+        img1 = torch.from_numpy(img1).float()
+        labels = torch.from_numpy(labels).float()
 
         if self._mode == 'train' or self._mode == 'dev':
             return (img0, img1, labels)
