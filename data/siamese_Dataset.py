@@ -75,8 +75,8 @@ class SiameseNetworkDataset():
 
     def __getitem__(self,index):
         if index % 2 == 0:  
-            print(self._image_paths[index][:])
-            print(type(self._image_paths[index][:]))
+            print(self._image_paths[index])
+            print(type(self._image_paths[index]))
             img0 = cv2.imread(self._image_paths[index][0], 0)        
             img1 = cv2.imread(self._image_paths[index][1], 0)
             
@@ -91,8 +91,8 @@ class SiameseNetworkDataset():
                 img0 = GetTransforms(img0, type=self.cfg.use_transforms_type)
                 img1 = GetTransforms(img1, type=self.cfg.use_transforms_type)
             img0 = np.array(img0)
-            img1 = np.array(img1)      
-
+            img1 = np.array(img1)    
+            
             img0 = transform(img0, self.cfg)
             img1 = transform(img1, self.cfg)
 
