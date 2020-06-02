@@ -74,11 +74,11 @@ class SiameseNetworkDataset():
         self._num_image = len(self._image_paths)
 
     def __getitem__(self,index):
-        if index % 2 == 0:
-            print(self._image_paths[index][index])
-            print(self._image_paths[index][index+1])
+        if index % 2 == 0:  
+            print(self._image_paths[index][:])
+            print(self._image_paths[index][:])
             img0 = cv2.imread(self._image_paths[index][0], 0)        
-            img1 = cv2.imread(self._image_paths[index][1], 0)  
+            img1 = cv2.imread(self._image_paths[index][1], 0)
             
             print(type(img0))
             '''cv2.imshow("bdbjjndsd",img0)
