@@ -75,15 +75,9 @@ class SiameseNetworkDataset():
 
     def __getitem__(self,index):
         if index % 2 == 0:  
-            print(self._image_paths[index][0])
-            print(type(self._image_paths[index][0]))
             img0 = cv2.imread(self._image_paths[index][0], 0)        
             img1 = cv2.imread(self._image_paths[index][1], 0)
-            
-            print(type(img0))
-            '''cv2.imshow("bdbjjndsd",img0)
-            cv2.image("vage toh kharine",img1)'''
-
+                        
             img0 = Image.fromarray(img0)
             img1 = Image.fromarray(img1)
 
