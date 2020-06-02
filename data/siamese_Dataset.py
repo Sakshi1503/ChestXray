@@ -85,8 +85,8 @@ class SiameseNetworkDataset():
         if self._mode == 'train':
             img0 = GetTransforms(img0, type=self.cfg.use_transforms_type)
             img1 = GetTransforms(img1, type=self.cfg.use_transforms_type)
-        img0 = np.array(img0)
-        img1 = np.array(img1)    
+        img0 = np.array(img0).astype(np.float32)
+        img1 = np.array(img1).astype(np.float32)    
         
         img0 = transform(img0, self.cfg)
         img1 = transform(img1, self.cfg)
