@@ -54,7 +54,6 @@ class SiameseNetworkDataset():
                 # labels = ([self.dict.get(n, n) for n in fields[5:]])
                # path = "/kaggle/input/chexpert/"os.path.relpath(path) + 
                 image_path = "/kaggle/input/chexpert/" + image_path[21:]
-                print(image_path)
                 image_two.append(image_path)
                 labels_two.append(labels)
                 '''
@@ -92,10 +91,8 @@ class SiameseNetworkDataset():
         img0 = transform(img0, self.cfg)
         img1 = transform(img1, self.cfg)
         
-        labels = np.array(self._labels[index]).astype(np.float64) 
+        labels = np.array(self._labels[index]).astype(np.float32) 
 
-        print(type(img0))
-        print(type(img1))
         img0 = torch.from_numpy(img0)
         img1 = torch.from_numpy(img1)
         labels = torch.from_numpy(labels)
