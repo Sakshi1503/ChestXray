@@ -93,7 +93,8 @@ class SiameseNetworkDataset():
            
             labels = np.array(self._labels[index]).astype(np.float64) 
 
-            print(type(img0)+"......................"+type(img1))
+            print(type(img0))
+            print(type(img1))
             img0 = tf.convert_to_tensor(img0, np.float64)
             img1 = tf.convert_to_tensor(img1, np.float64)
 
