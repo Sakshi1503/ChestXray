@@ -78,6 +78,7 @@ class SiameseNetworkDataset():
             img0 = cv2.imread(self._image_paths[index][0], 0)        
             img1 = cv2.imread(self._image_paths[index][1], 0)  
             
+            print(type(img0))
             '''cv2.imshow("bdbjjndsd",img0)
             cv2.image("vage toh kharine",img1)'''
 
