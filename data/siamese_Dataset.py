@@ -53,7 +53,6 @@ class SiameseNetworkDataset():
                 path = "../kaggle/input/chexpert/"
                 image_path = os.path.relpath(path) + "/" + image_path[21:]
                 print(image_path)
-                assert os.path.exists(image_path), image_path
                 image_two.append(image_path)
                 labels_two.append(labels)
                 '''
