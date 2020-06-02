@@ -50,7 +50,7 @@ class SiameseNetworkDataset():
                             flg_enhance = True
                             '''
                 # labels = ([self.dict.get(n, n) for n in fields[5:]])
-                path = "/kaggle/input/chexpert/"
+                path = "../kaggle/input/chexpert/"
                 image_path = os.path.relpath(path) + "/" + image_path[21:]
                 print(image_path)
                 assert os.path.exists(image_path), image_path
