@@ -78,19 +78,19 @@ class SiameseNetworkDataset():
             img0 = cv2.imread(self._image_paths[index][0], 0)        
             img1 = cv2.imread(self._image_paths[index][1], 0)
 
-            if img0 == None:
+            if img0 is None:
                 print("1"+self._image_paths[index][0])
 
-            if img1 == None:
+            if img1 is None:
                 print("1"+self._image_paths[index][1])
                 
             img0 = Image.fromarray(img0)
             img1 = Image.fromarray(img1)
             
-            if img0 == None:
+            if img0 is None:
                 print("2"+self._image_paths[index][0])
 
-            if img1 == None:
+            if img1 is None:
                 print("2"+self._image_paths[index][1])
 
             if self._mode == 'train':
@@ -102,10 +102,10 @@ class SiameseNetworkDataset():
             img0 = transform(img0, self.cfg)
             img1 = transform(img1, self.cfg)
             
-            if img0 == None:
+            if img0 is None:
                 print("3"+self._image_paths[index][0])
 
-            if img1 == None:
+            if img1 is None:
                 print("3"+self._image_paths[index][1])
 
             labels = np.array(self._labels[index]).astype(np.float64) 
