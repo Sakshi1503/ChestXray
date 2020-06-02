@@ -97,6 +97,7 @@ class SiameseNetworkDataset():
             print(type(img1))
             img0 = tf.convert_to_tensor(img0, np.float64)
             img1 = tf.convert_to_tensor(img1, np.float64)
+            labels = tf.convert_to_tensor(labels, np.float64)
 
             if self._mode == 'train' or self._mode == 'dev':
                 return (img0, img1, labels)
