@@ -5,6 +5,7 @@ import os
 from PIL import Image
 from data.imgaug import GetTransforms
 from data.utils import transform
+import tensorflow as tf
 
 class SiameseNetworkDataset():
     def __init__(self, label_path, cfg, mode='train'):
@@ -77,21 +78,9 @@ class SiameseNetworkDataset():
         if index % 2 == 0:  
             img0 = cv2.imread(self._image_paths[index][0], 0)        
             img1 = cv2.imread(self._image_paths[index][1], 0)
-
-            if img0 is None:
-                print("1"+self._image_paths[index][0])
-
-            if img1 is None:
-                print("1"+self._image_paths[index][1])
                 
             img0 = Image.fromarray(img0)
             img1 = Image.fromarray(img1)
-            
-            if img0 is None:
-                print("2"+self._image_paths[index][0])
-
-            if img1 is None:
-                print("2"+self._image_paths[index][1])
 
             if self._mode == 'train':
                 img0 = GetTransforms(img0, type=self.cfg.use_transforms_type)
@@ -101,21 +90,19 @@ class SiameseNetworkDataset():
             
             img0 = transform(img0, self.cfg)
             img1 = transform(img1, self.cfg)
-            
-            if img0 is None:
-                print("3"+self._image_paths[index][0])
-
-            if img1 is None:
-                print("3"+self._image_paths[index][1])
-
+           
             labels = np.array(self._labels[index]).astype(np.float64) 
+
+            print(type(img0)+"......................"+type(img1))
+            img0 = tf.convert_to_tensor(img0, np.float64)
+            img1 = tf.convert_to_tensor(img1, np.float64)
 
             if self._mode == 'train' or self._mode == 'dev':
                 return (img0, img1, labels)
             else:
                 raise Exception('Unknown mode : {}'.format(self._mode))
             
-            #return img0, img1 , torch.from_numpy(np.array([int(self.training_df.iat[index,2])],dtype=np.float32))
+                        #return img0, img1 , torch.from_numpy(np.array([int(self.training_df.iat[index,2])],dtype=np.float32))
             return img0, img1 , labels
         
     def __len__(self):
