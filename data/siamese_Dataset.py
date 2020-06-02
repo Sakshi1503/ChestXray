@@ -1,6 +1,7 @@
 import numpy as np
 from torch.utils.data import Dataset
 import cv2
+import torch
 import os
 from PIL import Image
 from data.imgaug import GetTransforms
@@ -95,9 +96,9 @@ class SiameseNetworkDataset():
 
         print(type(img0))
         print(type(img1))
-        img0 = tf.convert_to_tensor(img0, np.float64)
-        img1 = tf.convert_to_tensor(img1, np.float64)
-        labels = tf.convert_to_tensor(labels, np.float64)
+        img0 = torch.from_numpy(img0)
+        img1 = torch.from_numpy(img1)
+        labels = torch.from_numpy(labels)
 
         if self._mode == 'train' or self._mode == 'dev':
             return (img0, img1, labels)
