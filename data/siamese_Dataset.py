@@ -50,9 +50,21 @@ class SiameseNetworkDataset():
                             flg_enhance = True
                             '''
                 # labels = ([self.dict.get(n, n) for n in fields[5:]])
-                image_path = "../../../../input/chexpert/" + image_path[21:]
-                print(image_path)
-                assert os.path.exists(image_path), image_path
+                try:
+                    image_path = "../../../../input/chexpert/" + image_path[21:]
+                    print(image_path)
+                    assert os.path.exists(image_path), image_path
+                except: 
+                    try:
+                        image_path = "../../../input/chexpert/" + image_path[21:]
+                        print(image_path)
+                        assert os.path.exists(image_path), image_path
+                    except:
+                        try:
+                            image_path = "../../input/chexpert/" + image_path[21:]
+                            print(image_path)
+                            assert os.path.exists(image_path), image_path
+                        
                 image_two.append(image_path)
                 labels_two.append(labels)
                 '''
