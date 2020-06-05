@@ -109,7 +109,7 @@ class GlobalPool(nn.Module):
     def cuda(self, device=None):
         return self._apply(lambda t: t.cuda(device))
 
-    def forward(self, feat_map, logit_map):
+    def forward(self, feat_map):
         if self.cfg.global_pool == 'AVG':
             return self.avgpool(feat_map)
         elif self.cfg.global_pool == 'MAX':

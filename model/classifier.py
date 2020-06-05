@@ -147,7 +147,7 @@ class Classifier(nn.Module):
                 logit_map = classifier(feat_map)
                 logit_maps.append(logit_map.squeeze())
             # (N, C, 1, 1)
-            feat = self.global_pool(feat_map, logit_map)
+            feat = self.global_pool(feat_map)
 
             if self.cfg.fc_bn:
                 bn = getattr(self, "bn_" + str(index))
