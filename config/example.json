@@ -1,6 +1,6 @@
 {
-    "train_csv": "/kaggle/working/ChestXray/config/Cardiomegaly_train.csv",
-    "dev_csv": "/kaggle/working/ChestXray/config/Cardiomegaly_dev.csv",
+    "train_csv": "/kaggle/working/ChestXray/config/Cardiomegaly_train_small.csv",
+    "dev_csv": "/kaggle/working/ChestXray/config/Cardiomegaly_dev_small.csv",
     "backbone": "densenet121",
     "width": 512,
     "height": 512,
