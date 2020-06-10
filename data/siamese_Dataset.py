@@ -45,8 +45,6 @@ class SiameseNetworkDataset():
                             '''
                     
                     if index == 2:# or index == 6 or index == 10:
-                        print(value)
-                        print(self.dict[0].get(value))
                         labels.append(self.dict[0].get(value))
                     '''
                         if self.dict[0].get(
@@ -57,10 +55,8 @@ class SiameseNetworkDataset():
                 # labels = ([self.dict.get(n, n) for n in fields[5:]])
                # path = "/kaggle/input/chexpert/"os.path.relpath(path) + 
                 image_path = "/kaggle/input/chexpert/" + image_path[21:]
-                print(labels)
                 image_two.append(image_path)
                 labels_two.append(labels)
-                print(labels_two)
                 '''
                 if flg_enhance and self._mode == 'train':
                     for i in range(self.cfg.enhance_times):
