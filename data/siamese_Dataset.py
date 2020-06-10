@@ -30,7 +30,7 @@ class SiameseNetworkDataset():
             labels_two = []
             for line in f:
                 
-                labels = None
+                labels = []
                 fields = line.strip('\n').split(',')
                 image_path = fields[0]
                 flg_enhance = False
