@@ -44,7 +44,7 @@ class SiameseNetworkDataset():
                             flg_enhance = True
                             '''
                     if index == 2:# or index == 6 or index == 10:
-                        labels = self.dict[0].get(  value)
+                        labels = self.dict[0].get(value)
                         '''
                         if self.dict[0].get(
                                 value) == '1' and \
