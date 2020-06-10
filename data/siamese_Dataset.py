@@ -72,9 +72,9 @@ class SiameseNetworkDataset():
                     i=0
                     self._image_paths.append(image_two)
                     if(labels_two[0] == labels_two[1]):
-                        self._labels.append(1)
-                    else:
                         self._labels.append(0)
+                    else:
+                        self._labels.append(1)
                     image_two = []
                     labels_two = []
         self._num_image = len(self._image_paths)
