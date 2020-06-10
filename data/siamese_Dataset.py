@@ -15,8 +15,8 @@ class SiameseNetworkDataset():
         self._image_paths = []
         self._labels = []
         self._mode = mode
-        self.dict = [{'1.0': '1', '': '0', '0.0': '0', '-1.0': '0'},
-                     {'1.0': '1', '': '0', '0.0': '0', '-1.0': '1'}, ]
+        self.dict = [{'1': '1', '': '0', '0.0': '0', '-1.0': '0'},
+                     {'1': '1', '': '0', '0.0': '0', '-1.0': '1'}, ]
         with open(label_path) as f:
             header = f.readline().strip('\n').split(',')
             self._label_header = [
