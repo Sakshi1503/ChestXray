@@ -43,9 +43,12 @@ class SiameseNetworkDataset():
                                 self.cfg.enhance_index.count(index) > 0:
                             flg_enhance = True
                             '''
+                    
                     if index == 2:# or index == 6 or index == 10:
+                        print(value)
+                        print(self.dict[0].get(value))
                         labels.append(self.dict[0].get(value))
-                        '''
+                    '''
                         if self.dict[0].get(
                                 value) == '1' and \
                                 self.cfg.enhance_index.count(index) > 0:
