@@ -76,34 +76,34 @@ class SiameseNetworkDataset():
         self._num_image = len(self._image_paths)
 
     def __getitem__(self,index):
-        #if index % 2 == 0:  
-        img0 = cv2.imread(self._image_paths[index][0], 0)        
-        img1 = cv2.imread(self._image_paths[index][1], 0)
+        if index % 2 == 0:  
+            img0 = cv2.imread(self._image_paths[index][0], 0)        
+            img1 = cv2.imread(self._image_paths[index][1], 0)
 
-        cv2.imshow('sjdjsa',img1)
-        img0 = Image.fromarray(img0)
-        img1 = Image.fromarray(img1)
-        
-        if self._mode == 'train':
-            img0 = GetTransforms(img0, type=self.cfg.use_transforms_type)
-            img1 = GetTransforms(img1, type=self.cfg.use_transforms_type)
-        img0 = np.array(img0)
-        img1 = np.array(img1)    
-        
-        img0 = transform(img0, self.cfg)
-        img1 = transform(img1, self.cfg)
-        
-        labels = np.array(self._labels[index]).astype(np.float32) 
+            
+            img0 = Image.fromarray(img0)
+            img1 = Image.fromarray(img1)
+            
+            if self._mode == 'train':
+                img0 = GetTransforms(img0, type=self.cfg.use_transforms_type)
+                img1 = GetTransforms(img1, type=self.cfg.use_transforms_type)
+            img0 = np.array(img0)
+            img1 = np.array(img1)    
+            
+            img0 = transform(img0, self.cfg)
+            img1 = transform(img1, self.cfg)
+            
+            labels = np.array(self._labels[index]).astype(np.float32) 
 
-        img0 = torch.from_numpy(img0).float()
-        img1 = torch.from_numpy(img1).float()
-        labels = torch.from_numpy(labels).float()
+            img0 = torch.from_numpy(img0).float()
+            img1 = torch.from_numpy(img1).float()
+            labels = torch.from_numpy(labels).float()
 
-        if self._mode == 'train' or self._mode == 'dev':
-            return (img0, img1, labels)
-        else:
-            raise Exception('Unknown mode : {}'.format(self._mode))
-        
+            if self._mode == 'train' or self._mode == 'dev':
+                return (img0, img1, labels)
+            else:
+                raise Exception('Unknown mode : {}'.format(self._mode))
+            
                     #return img0, img1 , torch.from_numpy(np.array([int(self.training_df.iat[index,2])],dtype=np.float32))
         return img0, img1 , labels
         
