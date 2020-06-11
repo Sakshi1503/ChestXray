@@ -105,7 +105,7 @@ class SiameseNetworkDataset():
                 raise Exception('Unknown mode : {}'.format(self._mode))
             
                     #return img0, img1 , torch.from_numpy(np.array([int(self.training_df.iat[index,2])],dtype=np.float32))
-        return img0, img1 , labels
+            return img0, img1 , labels
         
     def __len__(self):
         return self._num_image
