@@ -79,10 +79,13 @@ class SiameseNetworkDataset():
         #if index % 2 == 0:  
         img0 = cv2.imread(self._image_paths[index][0], 0)        
         img1 = cv2.imread(self._image_paths[index][1], 0)
+
+        cv2.imshow("bdbjjndsd",img0)
+        cv2.imshow("wdbjjndsd",img1)
             
         img0 = Image.fromarray(img0)
         img1 = Image.fromarray(img1)
-
+        
         if self._mode == 'train':
             img0 = GetTransforms(img0, type=self.cfg.use_transforms_type)
             img1 = GetTransforms(img1, type=self.cfg.use_transforms_type)
