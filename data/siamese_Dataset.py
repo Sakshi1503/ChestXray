@@ -80,8 +80,7 @@ class SiameseNetworkDataset():
         img0 = cv2.imread(self._image_paths[index][0], 0)        
         img1 = cv2.imread(self._image_paths[index][1], 0)
 
-        image1 = Image.open(img0)
-        image1.show()           
+        cv2.imshow('sjdjsa',img1)
         img0 = Image.fromarray(img0)
         img1 = Image.fromarray(img1)
         
