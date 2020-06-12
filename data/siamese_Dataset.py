@@ -77,13 +77,11 @@ class SiameseNetworkDataset():
 
     def __getitem__(self,index):
         #if index % 2 == 0:  
+        print(self._image_paths[index][0])
+        print(self._image_paths[index][1])
+
         img0 = cv2.imread(self._image_paths[index][0], 0)        
         img1 = cv2.imread(self._image_paths[index][1], 0)
-
-        i=0
-        if i%5 == 0:
-            cv2.imshow('IMAGE0',img0)
-            cv2.imshow('IMAGE1',img1)
 
         img0 = Image.fromarray(img0)
         img1 = Image.fromarray(img1)
@@ -98,6 +96,7 @@ class SiameseNetworkDataset():
         img1 = transform(img1, self.cfg)
         
         labels = np.array(self._labels[index]).astype(np.float32) 
+        print(labels)
 
         img0 = torch.from_numpy(img0).float()
         img1 = torch.from_numpy(img1).float()
