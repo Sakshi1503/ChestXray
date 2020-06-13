@@ -31,7 +31,7 @@ class SiameseNetworkDataset():
             header[11],
             header[13],
             header[15]]
-
+        lines.remove('')
         for _ in range(2000):
             line0 = random.choice(lines)
             fields0 = line0.strip('\n').split(',')
