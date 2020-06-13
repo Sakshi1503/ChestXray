@@ -40,9 +40,9 @@ class SiameseNetworkDataset():
                 while True:
                     line1 = random.choice(lines) 
                     fields1 = line1.strip('\n').split(',')
-                    print(fields0)
-                    print(fields1)
-                    print("************************************")
+                    #print(fields0)
+                    #print(fields1)
+                    #print("************************************")
                     if self.dict[0].get(fields0[7]) == self.dict[0].get(fields1[7]):
                         break
             else:
@@ -55,9 +55,9 @@ class SiameseNetworkDataset():
             image_path = fields1[0]
             image_path = "/kaggle/input/chexpert/" + image_path[21:]
             image_two.append(image_path)
-            print(fields0)
+            #print(fields0)
             labels_two.append(self.dict[0].get(fields0[7]))
-            print(fields1)
+            #print(fields1)
             labels_two.append(self.dict[0].get(fields1[7]))
             
             i+=1
