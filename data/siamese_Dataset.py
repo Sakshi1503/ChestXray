@@ -30,7 +30,7 @@ class SiameseNetworkDataset():
             image_two = []
             labels_two = []
             for _ in range(2000):
-                lines = open(f).read().splitlines('\n')
+                lines = open(f).read().split('\n')
 
                 line0 = random.choice(lines)
                 fields0 = line0.strip('\n').split(',')
