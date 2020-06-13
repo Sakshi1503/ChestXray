@@ -32,7 +32,7 @@ class SiameseNetworkDataset():
             header[13],
             header[15]]
         lines.remove('')
-        for _ in range(2000):
+        for _ in range(200):
             line0 = random.choice(lines)
             fields0 = line0.strip('\n').split(',')
             should_get_same_class = random.randint(0,1)
