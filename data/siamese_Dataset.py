@@ -18,52 +18,53 @@ class SiameseNetworkDataset():
         self._mode = mode
         self.dict = [{'1.0': '1', '': '0', '0.0': '0', '-1.0': '0', '1':'1', '0':'0'},
                      {'1.0': '1', '': '0', '0.0': '0', '-1.0': '1', '1':'1', '0':'0'}, ]
-        with open(label_path) as f:
-            header = f.readline().strip('\n').split(',')
-            self._label_header = [
-                header[7],
-                header[10],
-                header[11],
-                header[13],
-                header[15]]
-            i = 0
-            image_two = []
-            labels_two = []
-            for _ in range(2000):
-                lines = open(f).read().split('\n')
+        
+        i = 0
+        image_two = []
+        labels_two = []
 
-                line0 = random.choice(lines)
-                fields0 = line0.strip('\n').split(',')
-                should_get_same_class = random.randint(0,1)
-                if should_get_same_class:
-                    while True:
-                        line1 = random.choice(lines) 
-                        fields1 = line1.strip('\n').split(',')
-                        if self.dict[0].get(fields0[7]) == self.dict[0].get(fields1[7]):
-                            break
-                else:
+        lines = open(label_path).read().split('\n')
+        header = lines.pop(0)
+        self._label_header = [
+            header[7],
+            header[10],
+            header[11],
+            header[13],
+            header[15]]
+
+        for _ in range(2000):
+            line0 = random.choice(lines)
+            fields0 = line0.strip('\n').split(',')
+            should_get_same_class = random.randint(0,1)
+            if should_get_same_class:
+                while True:
                     line1 = random.choice(lines) 
                     fields1 = line1.strip('\n').split(',')
+                    if self.dict[0].get(fields0[7]) == self.dict[0].get(fields1[7]):
+                        break
+            else:
+                line1 = random.choice(lines) 
+                fields1 = line1.strip('\n').split(',')
 
-                image_path = fields0[0]
-                image_path = "/kaggle/input/chexpert/" + image_path[21:]
-                image_two.append(image_path)
-                image_path = fields1[0]
-                image_path = "/kaggle/input/chexpert/" + image_path[21:]
-                image_two.append(image_path)
-                labels_two.append(self.dict[0].get(fields0[7]))
-                labels_two.append(self.dict[0].get(fields1[7]))
-                
-                i+=1
-                if i==2:
-                    i=0
-                    self._image_paths.append(image_two)
-                    if(labels_two[0] == labels_two[1]):
-                        self._labels.append(0)
-                    else:
-                        self._labels.append(1)
-                    image_two = []
-                    labels_two = []
+            image_path = fields0[0]
+            image_path = "/kaggle/input/chexpert/" + image_path[21:]
+            image_two.append(image_path)
+            image_path = fields1[0]
+            image_path = "/kaggle/input/chexpert/" + image_path[21:]
+            image_two.append(image_path)
+            labels_two.append(self.dict[0].get(fields0[7]))
+            labels_two.append(self.dict[0].get(fields1[7]))
+            
+            i+=1
+            if i==2:
+                i=0
+                self._image_paths.append(image_two)
+                if(labels_two[0] == labels_two[1]):
+                    self._labels.append(0)
+                else:
+                    self._labels.append(1)
+                image_two = []
+                labels_two = []
         self._num_image = len(self._image_paths)
 
     def __getitem__(self,index):
