@@ -53,6 +53,7 @@ class SiameseNetworkDataset():
             image_path = "/kaggle/input/chexpert/" + image_path[21:]
             image_two.append(image_path)
             labels_two.append(self.dict[0].get(fields0[7]))
+            print(fields1)
             labels_two.append(self.dict[0].get(fields1[7]))
             
             i+=1
