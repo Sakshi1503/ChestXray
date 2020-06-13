@@ -7,7 +7,6 @@ from PIL import Image
 from data.imgaug import GetTransforms
 from data.utils import transform
 import tensorflow as tf
-import random
 
 class SiameseNetworkDataset():
     def __init__(self, label_path, cfg, mode='train'):
@@ -29,31 +28,41 @@ class SiameseNetworkDataset():
             i = 0
             image_two = []
             labels_two = []
-            for _ in range(2000):
-                lines = open(f).read().splitlines('\n')
-
-                line0 = random.choice(lines)
-                fields0 = line0.strip('\n').split(',')
-                should_get_same_class = random.randint(0,1)
-                if should_get_same_class:
-                    while True:
-                        line1 = random.choice(lines) 
-                        fields1 = line1.strip('\n').split(',')
-                        if self.dict[0].get(fields0[7]) == self.dict[0].get(fields1[7]):
-                            break
-                else:
-                    line1 = random.choice(lines) 
-                    fields1 = line1.strip('\n').split(',')
-
-                image_path = fields0[0]
-                image_path = "/kaggle/input/chexpert/" + image_path[21:]
-                image_two.append(image_path)
-                image_path = fields1[0]
-                image_path = "/kaggle/input/chexpert/" + image_path[21:]
-                image_two.append(image_path)
-                labels_two.append(self.dict[0].get(fields0[7]))
-                labels_two.append(self.dict[0].get(fields1[7]))
+            for line in f:
                 
+                labels = []
+                fields = line.strip('\n').split(',')
+                image_path = fields[0]
+                flg_enhance = False
+                for index, value in enumerate(fields[5:]):
+                    '''
+                    if index == 5 or index == 8:
+                        labels.append(self.dict[1].get(value))
+                        if self.dict[1].get(
+                                value) == '1' and \
+                                self.cfg.enhance_index.count(index) > 0:
+                            flg_enhance = True
+                            '''
+                    
+                    if index == 2:# or index == 6 or index == 10:
+                        labels.append(self.dict[0].get(value))
+                    '''
+                        if self.dict[0].get(
+                                value) == '1' and \
+                                self.cfg.enhance_index.count(index) > 0:
+                            flg_enhance = True
+                            '''
+                # labels = ([self.dict.get(n, n) for n in fields[5:]])
+               # path = "/kaggle/input/chexpert/"os.path.relpath(path) + 
+                image_path = "/kaggle/input/chexpert/" + image_path[21:]
+                image_two.append(image_path)
+                labels_two.append(labels)
+                '''
+                if flg_enhance and self._mode == 'train':
+                    for i in range(self.cfg.enhance_times):
+                        self._image_paths.append(image_path)
+                        self._labels.append(labels)
+                '''
                 i+=1
                 if i==2:
                     i=0
