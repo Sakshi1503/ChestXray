@@ -20,7 +20,7 @@ class SiameseNetworkDataset():
                      {'1.0': '1', '': '0', '0.0': '0', '-1.0': '1', '1':'1', '0':'0'}, ]
         
         self.lines = open(label_path).read().split('\n')
-        header = lines.pop(0)
+        header = self.lines.pop(0)
         self._label_header = [
             header[7],
             header[10],
