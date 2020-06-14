@@ -78,7 +78,7 @@ class SiameseNetworkDataset():
         img0 = transform(img0, self.cfg)
         img1 = transform(img1, self.cfg)
         
-        labels = np.array(self._labels[index]).astype(np.float32) 
+        labels = np.array(self._labels[0]).astype(np.float32) 
         #print(self._image_paths[index][0],self._image_paths[index][1],labels)
 
         img0 = torch.from_numpy(img0).float()
