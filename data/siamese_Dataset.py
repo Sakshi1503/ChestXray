@@ -30,13 +30,65 @@ class SiameseNetworkDataset():
         self.lines.remove('')
         
         self._num_image = 200
+        self.num_index = 0
 
     def __getitem__(self,index):
         #if index % 2 == 0:  
         
-        line0 = random.choice(self.lines)
-        fields0 = line0.strip('\n').split(',')
-        should_get_same_class = random.randint(0,1)
+
+        if(self.num_index == 0):
+            while True:
+                line0 = random.choice(self.lines) 
+                fields0 = line0.strip('\n').split(',')
+                if self.dict[0].get(fields0[7]) == 0:
+                    break
+            while True:
+                line1 = random.choice(self.lines) 
+                fields1 = line1.strip('\n').split(',')
+                if self.dict[0].get(fields1[7]) == 0:
+                    break
+            self.num_index = 1
+
+        if(self.num_index == 1):
+            while True:
+                line0 = random.choice(self.lines) 
+                fields0 = line0.strip('\n').split(',')
+                if self.dict[0].get(fields0[7]) == 0:
+                    break
+            while True:
+                line1 = random.choice(self.lines) 
+                fields1 = line1.strip('\n').split(',')
+                if self.dict[0].get(fields1[7]) == 1:
+                    break
+            self.num_index = 2
+
+        if(self.num_index == 2):
+            while True:
+                line0 = random.choice(self.lines) 
+                fields0 = line0.strip('\n').split(',')
+                if self.dict[0].get(fields0[7]) == 1:
+                    break   
+            while True:
+                line1 = random.choice(self.lines) 
+                fields1 = line1.strip('\n').split(',')
+                if self.dict[0].get(fields1[7]) == 0:
+                    break
+            self.num_index = 3
+
+        if(self.num_index == 3):
+            while True:
+                line0 = random.choice(self.lines) 
+                fields0 = line0.strip('\n').split(',')
+                if self.dict[0].get(fields0[7]) == 1:
+                    break
+            while True:
+                line1 = random.choice(self.lines) 
+                fields1 = line1.strip('\n').split(',')
+                if self.dict[0].get(fields1[7]) == 1:
+                    break
+            self.num_index = 0
+
+        '''             
         if should_get_same_class:
             while True:
                 line1 = random.choice(self.lines) 
@@ -46,7 +98,7 @@ class SiameseNetworkDataset():
         else:
             line1 = random.choice(self.lines) 
             fields1 = line1.strip('\n').split(',')
-
+        '''
         image_two = []
         labels_two = []
         image_path = fields0[0]
