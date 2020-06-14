@@ -49,7 +49,7 @@ class SiameseNetworkDataset():
                     break
             self.num_index = 1
 
-        if(self.num_index == 1):
+        elif(self.num_index == 1):
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
@@ -62,7 +62,7 @@ class SiameseNetworkDataset():
                     break
             self.num_index = 2
 
-        if(self.num_index == 2):
+        elif(self.num_index == 2):
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
@@ -75,7 +75,7 @@ class SiameseNetworkDataset():
                     break
             self.num_index = 3
 
-        if(self.num_index == 3):
+        elif(self.num_index == 3):
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
