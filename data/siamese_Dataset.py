@@ -38,7 +38,7 @@ class SiameseNetworkDataset():
         fields0 = line0.strip('\n').split(',')
         should_get_same_class = random.randint(0,1)
 
-        if(index % 3 == 0):
+        if(index % 4 == 0):
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
@@ -51,7 +51,7 @@ class SiameseNetworkDataset():
                     break
             self._labels.append(1)
 
-        elif(index % 3 == 1):
+        elif(index % 4 == 1):
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
@@ -64,7 +64,7 @@ class SiameseNetworkDataset():
                     break
             self._labels.append(1)
 
-        elif(index % 3 == 2):
+        elif(index % 4 == 2 or index % 4 == 3):
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
