@@ -43,12 +43,12 @@ class SiameseNetworkDataset():
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
-                if self.dict[0].get(fields0[7]) == '0':
+                if self.dict[0].get(fields0[7]) == 0:
                     break
             while True:
                 line1 = random.choice(self.lines) 
                 fields1 = line1.strip('\n').split(',')
-                if self.dict[0].get(fields1[7]) == '1':
+                if self.dict[0].get(fields1[7]) == 1:
                     break
             self.num_index = 2
             self._labels.append(1)
@@ -57,12 +57,12 @@ class SiameseNetworkDataset():
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
-                if self.dict[0].get(fields0[7]) == '1':
+                if self.dict[0].get(fields0[7]) == 1:
                     break   
             while True:
                 line1 = random.choice(self.lines) 
                 fields1 = line1.strip('\n').split(',')
-                if self.dict[0].get(fields1[7]) == '0':
+                if self.dict[0].get(fields1[7]) == 0:
                     break
             self.num_index = 3
             self._labels.append(1)
@@ -71,12 +71,12 @@ class SiameseNetworkDataset():
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
-                if self.dict[0].get(fields0[7]) == '1':
+                if self.dict[0].get(fields0[7]) == 1:
                     break
             while True:
                 line1 = random.choice(self.lines) 
                 fields1 = line1.strip('\n').split(',')
-                if self.dict[0].get(fields1[7]) == '1':
+                if self.dict[0].get(fields1[7]) == 1:
                     break
             self.num_index = 1
             self._labels.append(0)
@@ -95,10 +95,16 @@ class SiameseNetworkDataset():
         
         image_path = fields0[0]
         image_path = "/kaggle/input/chexpert/" + image_path[21:]
-        img0 = cv2.imread(image_path, 0)
+        image_two.append(image_path)
         image_path = fields1[0]
         image_path = "/kaggle/input/chexpert/" + image_path[21:]
-        img1 = cv2.imread(image_path, 0)
+        image_two.append(image_path)
+        labels_two.append(self.dict[0].get(fields0[7]))
+        labels_two.append(self.dict[0].get(fields1[7]))
+        
+        
+        img0 = cv2.imread(image_two[0], 0)        
+        img1 = cv2.imread(image_two[1], 0)
 
         img0 = Image.fromarray(img0)
         img1 = Image.fromarray(img1)
