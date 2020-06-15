@@ -104,6 +104,11 @@ class SiameseNetworkDataset():
         labels_two.append(self.dict[0].get(fields0[7]))
         labels_two.append(self.dict[0].get(fields1[7]))
         
+        if(labels_two[0] == labels_two[1]):
+            self._labels.append(0)
+        else:
+            self._labels.append(1)
+        
         
         img0 = cv2.imread(image_two[0], 0)        
         img1 = cv2.imread(image_two[1], 0)
