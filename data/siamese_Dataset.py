@@ -30,7 +30,6 @@ class SiameseNetworkDataset():
         self.lines.remove('')
         
         self._num_image = 200
-        self.num_index = 1
 
     def __getitem__(self,index):
         #if index % 2 == 0:  
@@ -39,7 +38,7 @@ class SiameseNetworkDataset():
         fields0 = line0.strip('\n').split(',')
         should_get_same_class = random.randint(0,1)
 
-        if(self.num_index == 1):
+        if(index % 3 == 0):
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
@@ -50,10 +49,9 @@ class SiameseNetworkDataset():
                 fields1 = line1.strip('\n').split(',')
                 if self.dict[0].get(fields1[7]) == '1':
                     break
-            self.num_index = 2
             self._labels.append(1)
 
-        elif(self.num_index == 2):
+        elif(index % 3 == 1):
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
@@ -64,10 +62,9 @@ class SiameseNetworkDataset():
                 fields1 = line1.strip('\n').split(',')
                 if self.dict[0].get(fields1[7]) == '0':
                     break
-            self.num_index = 3
             self._labels.append(1)
 
-        elif(self.num_index == 3):
+        elif(index % 3 == 2):
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
@@ -78,7 +75,6 @@ class SiameseNetworkDataset():
                 fields1 = line1.strip('\n').split(',')
                 if self.dict[0].get(fields1[7]) == '1':
                     break
-            self.num_index = 1
             self._labels.append(0)
         '''
 
