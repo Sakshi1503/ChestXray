@@ -39,6 +39,7 @@ class SiameseNetworkDataset():
         fields0 = line0.strip('\n').split(',')
         should_get_same_class = random.randint(0,1)
 
+        '''
         if(self.num_index == 1):
             while True:
                 line0 = random.choice(self.lines) 
@@ -91,8 +92,9 @@ class SiameseNetworkDataset():
         else:
             line1 = random.choice(self.lines) 
             fields1 = line1.strip('\n').split(',')
-        '''
         
+        image_two = []
+        labels_two = []
         image_path = fields0[0]
         image_path = "/kaggle/input/chexpert/" + image_path[21:]
         image_two.append(image_path)
