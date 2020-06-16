@@ -9,7 +9,7 @@ from data.utils import transform
 import tensorflow as tf
 import random
 
-class SiameseNetworkDataset():
+class SiameseNetworkDataset2():
     def __init__(self, label_path, cfg, mode='train'):
         self.cfg = cfg
         self._label_header = None
