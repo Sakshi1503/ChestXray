@@ -29,7 +29,7 @@ class SiameseNetworkDataset2():
             header[15]]
         self.lines.remove('')
         
-        self._num_image = 200
+        self._num_image = 800
         self.num_index = 1
 
     def __getitem__(self,index):
