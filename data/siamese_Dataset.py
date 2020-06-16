@@ -42,12 +42,12 @@ class SiameseNetworkDataset():
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
-                if self.dict[0].get(fields0[7]) == '0':
+                if self.dict[0].get(fields0[11]) == '0':
                     break
             while True:
                 line1 = random.choice(self.lines) 
                 fields1 = line1.strip('\n').split(',')
-                if self.dict[0].get(fields1[7]) == '1':
+                if self.dict[0].get(fields1[11]) == '1':
                     break
             self._labels.append(1)
 
@@ -55,12 +55,12 @@ class SiameseNetworkDataset():
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
-                if self.dict[0].get(fields0[7]) == '1':
+                if self.dict[0].get(fields0[11]) == '1':
                     break   
             while True:
                 line1 = random.choice(self.lines) 
                 fields1 = line1.strip('\n').split(',')
-                if self.dict[0].get(fields1[7]) == '0':
+                if self.dict[0].get(fields1[11]) == '0':
                     break
             self._labels.append(1)
 
@@ -68,12 +68,12 @@ class SiameseNetworkDataset():
             while True:
                 line0 = random.choice(self.lines) 
                 fields0 = line0.strip('\n').split(',')
-                if self.dict[0].get(fields0[7]) == '1':
+                if self.dict[0].get(fields0[11]) == '1':
                     break
             while True:
                 line1 = random.choice(self.lines) 
                 fields1 = line1.strip('\n').split(',')
-                if self.dict[0].get(fields1[7]) == '1':
+                if self.dict[0].get(fields1[11]) == '1':
                     break
             self._labels.append(0)
         '''
