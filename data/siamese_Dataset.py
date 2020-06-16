@@ -33,11 +33,7 @@ class SiameseNetworkDataset():
 
     def __getitem__(self,index):
         #if index % 2 == 0:  
-        
-        line0 = random.choice(self.lines)
-        fields0 = line0.strip('\n').split(',')
-        should_get_same_class = random.randint(0,1)
-
+        print(index)
         if(index % 4 == 0):
             while True:
                 line0 = random.choice(self.lines) 
