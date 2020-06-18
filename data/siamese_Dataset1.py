@@ -49,7 +49,8 @@ class SiameseNetworkDataset1():
                                 self.cfg.enhance_index.count(index) > 0:
                             flg_enhance = True
                             
-                labels = ([self.dict.get(n, n) for n in fields[5:]])
+                #labels = ([self.dict.get(n, n) for n in fields[5:]])
+                labels = list(map(int, labels))
                # path = "/kaggle/input/chexpert/"os.path.relpath(path) + 
                 image_path = "/kaggle/input/chexpert/" + image_path[21:]
                 image_two.append(image_path)
