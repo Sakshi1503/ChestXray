@@ -35,33 +35,31 @@ class SiameseNetworkDataset():
                 image_path = fields[0]
                 flg_enhance = False
                 for index, value in enumerate(fields[5:]):
-                    '''
                     if index == 5 or index == 8:
                         labels.append(self.dict[1].get(value))
                         if self.dict[1].get(
                                 value) == '1' and \
                                 self.cfg.enhance_index.count(index) > 0:
                             flg_enhance = True
-                            '''
                     
-                    if index == 2:# or index == 6 or index == 10:
-                        labels.append(self.dict[0].get(value))
-                    '''
+                    if index == 2 or index == 6 or index == 10:
+                        #labels.append(self.dict[0].get(value))
                         if self.dict[0].get(
                                 value) == '1' and \
                                 self.cfg.enhance_index.count(index) > 0:
                             flg_enhance = True
-                            '''
-                # labels = ([self.dict.get(n, n) for n in fields[5:]])
+                            
+                labels = ([self.dict.get(n, n) for n in fields[5:]])
                # path = "/kaggle/input/chexpert/"os.path.relpath(path) + 
                 image_path = "/kaggle/input/chexpert/" + image_path[21:]
                 image_two.append(image_path)
                 labels_two.append(labels)
-                '''
+                
                 if flg_enhance and self._mode == 'train':
                     for i in range(self.cfg.enhance_times):
                         self._image_paths.append(image_path)
                         self._labels.append(labels)
+               
                 '''
                 i+=1
                 if i==2:
@@ -73,14 +71,15 @@ class SiameseNetworkDataset():
                         self._labels.append(1)
                     image_two = []
                     labels_two = []
+                '''
         self._num_image = len(self._image_paths)
 
-    def __getitem__(self,index):
+    def __getitem__(self,idx):
         #if index % 2 == 0:  
         
         
-        img0 = cv2.imread(self._image_paths[index][0], 0)        
-        img1 = cv2.imread(self._image_paths[index][1], 0)
+        img0 = cv2.imread(self._image_paths[idx][0], 0)        
+        img1 = cv2.imread(self._image_paths[idx][1], 0)
 
         img0 = Image.fromarray(img0)
         img1 = Image.fromarray(img1)
@@ -94,7 +93,7 @@ class SiameseNetworkDataset():
         img0 = transform(img0, self.cfg)
         img1 = transform(img1, self.cfg)
         
-        labels = np.array(self._labels[index]).astype(np.float32) 
+        labels = np.array(self._labels[idx]).astype(np.float32) 
         #print(self._image_paths[index][0],self._image_paths[index][1],labels)
 
         img0 = torch.from_numpy(img0).float()
