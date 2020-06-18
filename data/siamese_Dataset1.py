@@ -8,7 +8,7 @@ from data.imgaug import GetTransforms
 from data.utils import transform
 import tensorflow as tf
 
-class SiameseNetworkDataset():
+class SiameseNetworkDataset1():
     def __init__(self, label_path, cfg, mode='train'):
         self.cfg = cfg
         self._label_header = None
