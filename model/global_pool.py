@@ -19,7 +19,7 @@ class LogSumExpPool(nn.Module):
 
         # (N, C, 1, 1) m
         m, _ = torch.max(
-            feat_map, dim=-1, keepdim=True)[0].max(dim=-2, keepdim=True)
+            feat_map, dim=-1, keepdim=False)[0].max(dim=-2, keepdim=False)
 
         # (N, C, H, W) value0
         value0 = feat_map - m
@@ -28,7 +28,7 @@ class LogSumExpPool(nn.Module):
 
         # TODO: split dim=(-1, -2) for onnx.export
         return m + 1 / g * torch.log(area * torch.sum(
-            torch.exp(g * value0), dim=(-1, -2), keepdim=True))
+            torch.exp(g * value0), dim=(-1, -2), keepdim=False))
 
 
 class ExpPool(nn.Module):
@@ -47,12 +47,12 @@ class ExpPool(nn.Module):
         EPSILON = 1e-7
         (N, C, H, W) = feat_map.shape
         m, _ = torch.max(
-            feat_map, dim=-1, keepdim=True)[0].max(dim=-2, keepdim=True)
+            feat_map, dim=-1, keepdim=False)[0].max(dim=-2, keepdim=False)
 
         # caculate the sum of exp(xi)
         # TODO: split dim=(-1, -2) for onnx.export
         sum_exp = torch.sum(torch.exp(feat_map - m),
-                            dim=(-1, -2), keepdim=True)
+                            dim=(-1, -2), keepdim=False)
 
         # prevent from dividing by zero
         sum_exp += EPSILON
@@ -62,7 +62,7 @@ class ExpPool(nn.Module):
         weighted_value = feat_map * exp_weight
 
         # TODO: split dim=(-1, -2) for onnx.export
-        return torch.sum(weighted_value, dim=(-1, -2), keepdim=True)
+        return torch.sum(weighted_value, dim=(-1, -2), keepdim=False)
 
 
 class LinearPool(nn.Module):
@@ -82,7 +82,7 @@ class LinearPool(nn.Module):
         # sum feat_map's last two dimention into a scalar
         # so the shape of sum_input is (N,C,1,1)
         # TODO: split dim=(-1, -2) for onnx.export
-        sum_input = torch.sum(feat_map, dim=(-1, -2), keepdim=True)
+        sum_input = torch.sum(feat_map, dim=(-1, -2), keepdim=False)
 
         # prevent from dividing by zero
         sum_input += EPSILON
@@ -92,7 +92,7 @@ class LinearPool(nn.Module):
         weighted_value = feat_map * linear_weight
 
         # TODO: split dim=(-1, -2) for onnx.export
-        return torch.sum(weighted_value, dim=(-1, -2), keepdim=True)
+        return torch.sum(weighted_value, dim=(-1, -2), keepdim=False)
 
 
 class GlobalPool(nn.Module):
