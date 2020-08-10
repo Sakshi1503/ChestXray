@@ -87,7 +87,7 @@ class SiameseNetworkDataset2():
             while True:
                 line1 = random.choice(self.lines) 
                 fields1 = line1.strip('\n').split(',')
-                if self.dict[0].get(fields0[10]) == self.dict[0].get(fields1[10]):
+                if self.dict[0].get(fields0[10]) == self.dict[0].get(fields1[15]):
                     break
         else:
             line1 = random.choice(self.lines) 
